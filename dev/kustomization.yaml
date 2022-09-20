@@ -12,6 +12,9 @@ commonLabels:
   environment: develop
   tier: backend
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 images:
 - name: kustomize-01
   newName: 813046145810.dkr.ecr.ap-southeast-1.amazonaws.com/kustomize-01
@@ -26,4 +29,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/rules/0/host
-      value: the.real.hostname.develop
+      value: hostname.develop.com
+    # - op: replace
+    #   path: /metadata/annotations/kubernetes.io~1ingress.class
+    #   value: hostname.develop.com

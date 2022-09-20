@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
 - ./namespace.yaml
-- https://github.com/thanawit-dept/kustomize-01.git//deployments/kustomize/
+- https://github.com/thanawit-dept/kustomize-01.git//deployments/kustomize/?ref=main
 # - https://github.com/thanawit-dept/kustomize-02.git//deployments/kustomize/
 
 namespace: backend

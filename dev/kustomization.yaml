@@ -4,9 +4,13 @@ kind: Kustomization
 resources:
 - ./namespace.yaml
 - https://github.com/thanawit-dept/kustomize-01.git//deployments/kustomize/
-- https://github.com/thanawit-dept/kustomize-02.git//deployments/kustomize/
+# - https://github.com/thanawit-dept/kustomize-02.git//deployments/kustomize/
 
 namespace: backend
+
+commonLabels:
+  environment: develop
+  tier: backend
 
 images:
 - name: kustomize-01
@@ -16,6 +20,10 @@ images:
   newName: 813046145810.dkr.ecr.ap-southeast-1.amazonaws.com/kustomize-02
   newTag: test-kustomize-02
 
-commonLabels:
-  environment: develop
-  tier: backend
+patches:
+- target:
+    kind: Ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: the.real.hostname.develop

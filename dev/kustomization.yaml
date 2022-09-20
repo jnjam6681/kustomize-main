@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ./namespace.yaml
+- https://github.com/thanawit-dept/kustomize-01.git//deployments/kustomize/
+- https://github.com/thanawit-dept/kustomize-02.git//deployments/kustomize/
+
+namespace: backend
+
+images:
+- name: kustomize-01
+  newName: 813046145810.dkr.ecr.ap-southeast-1.amazonaws.com/kustomize-01
+  newTag: test-kustomize-01
+- name: kustomize-02
+  newName: 813046145810.dkr.ecr.ap-southeast-1.amazonaws.com/kustomize-02
+  newTag: test-kustomize-02
+
+commonLabels:
+  environment: develop
+  tier: backend
